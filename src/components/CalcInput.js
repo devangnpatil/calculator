@@ -2,8 +2,8 @@ import React from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 
-const CalcInput = () => {
-
+const CalcInput = (props) => {
+    console.log(props);
     const useStyles = makeStyles(theme => ({
         container: {
             display: 'flex',
@@ -34,24 +34,15 @@ const CalcInput = () => {
 
   return (
     <div>
-      <div className="calc-input-wrapper">
-        <TextField
-            id="standard-name"
-            label="Enter value 1"
-            className={classes.textField}
-            value={values.value1}
-            onChange={handleChange('value1')}
-            margin="normal"
-        />
         <TextField
             id="standard-name"
             label="Enter value 2"
             className={classes.textField}
-            value={values.value2}
-            onChange={handleChange('value2')}
+            value={props.value}
+            onChange={handleChange(props.name)}
             margin="normal"
+            name= {props.name}
         />
-      </div>
     </div>
   )
 }
