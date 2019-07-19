@@ -1,5 +1,6 @@
 # calculator
-create a calculator in react
+Create a calculator in react
+
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
