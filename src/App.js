@@ -1,24 +1,30 @@
 import React from 'react';
-import logo from './logo.svg';
+import AppHeader from './components/AppHeader';
+import CalcInput from './components/CalcInput'
+import CalcButton from './components/CalcButton';
+import CalcResult from './components/CalcResult';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="calculator-wrapper">
+        <div className="calculator-header-wrapper">
+          <AppHeader/>
+        </div>
+        <div className="calc-input-wrapper">
+          <CalcInput />
+        </div>
+        <div className="button-wrapper">
+          <CalcButton />
+          <CalcButton />
+          <CalcButton />
+          <CalcButton />
+        </div>
+        <div className="result-wrapper">
+          <CalcResult />
+        </div>
+      </div>
     </div>
   );
 }
