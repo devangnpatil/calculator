@@ -25,6 +25,29 @@ body{
   padding: 15px;
 }
 
+.input-list{
+  margin-top: 2em;
+}
+
+.input-list input{
+  width: 90%;
+  font-size: 14px;
+  font-weight: 400;
+  margin: 0 auto;
+  line-height: 19px;
+  display: block;
+  border:1px solid transparent ;
+  border-bottom: 1px solid #5800FB;
+  margin-bottom: 30px;
+}
+
+.input-list input:focus{
+  outline-style:none;
+  box-shadow:none;
+  border:1px solid transparent ;
+  border-bottom: 1px solid #5800FB;
+}
+
 .button-wrapper{
   display: flex;
   justify-content: center;
@@ -43,7 +66,12 @@ body{
   margin-right: 17px;
   margin-bottom: 25px;
   border-radius: 2px;
+}
 
+.button-wrapper .calc-button:focus{
+  outline-style:none;
+  box-shadow:none;
+  border:1px solid transparent;
 }
 
 .calc-button .icon{

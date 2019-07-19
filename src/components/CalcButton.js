@@ -8,7 +8,6 @@ class CalcButton extends Component{
 
 	handleChange = (e) =>{
 		e.preventDefault();
-		console.log(this.state);
 	};
 	render(){
 		const {operations} = this.props;

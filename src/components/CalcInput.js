@@ -1,50 +1,28 @@
-import React from 'react'
-import { makeStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
+import React, {Component} from 'react';
+class CalcInput extends Component{
 
-const CalcInput = (props) => {
-    console.log(props);
-    const useStyles = makeStyles(theme => ({
-        container: {
-            display: 'flex',
-            flexWrap: 'wrap',
-        },
-        textField: {
-            marginLeft: theme.spacing(3),
-            marginRight: theme.spacing(3),
-            width: '92.5%',
-        },
-        dense: {
-            marginTop: 19,
-        },
-        menu: {
-            width: 200,
-        },
-    }));
-
-    const classes = useStyles();
-    const [values, setValues] = React.useState({
-      value1: '',
-      value2:''
-    });
-  
+  render(){
+    const {inputElements} = this.props;
     const handleChange = name => event => {
-      setValues({ ...values, [name]: event.target.value });
+      // this.setState({[name]: event.target.value });
     };
-
-  return (
-    <div>
-        <TextField
-            id="standard-name"
-            label="Enter value 2"
-            className={classes.textField}
-            value={props.value}
-            onChange={handleChange(props.name)}
-            margin="normal"
-            name= {props.name}
-        />
-    </div>
-  )
+		const inputList = inputElements.map(input => {
+			return (
+          <input type="text" 
+            label= {input.labelName} 
+            onChange={handleChange(input.name)} 
+            name= {input.name}
+            key={input.id}
+            placeholder={input.labelName}
+          />
+			)
+		})
+    return (
+      <div className="input-list">
+				{inputList}
+			</div>
+    )
+  }
 }
 
 export default CalcInput
