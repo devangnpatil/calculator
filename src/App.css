@@ -44,7 +44,12 @@ body{
   display: block;
   border:1px solid transparent ;
   border-bottom: 1px solid #5800FB;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
+}
+
+p.error{
+  width: 90%;
+  margin: 0 auto 2em;
 }
 
 .input-list input:focus{
@@ -74,8 +79,12 @@ body{
   border-radius: 2px;
 }
 
-.button-wrapper .calc-button.active{
+.active{
   background: linear-gradient(#5B247A, #65799B);
+}
+
+.error{
+  color: red;
 }
 
 .button-wrapper .calc-button:focus{

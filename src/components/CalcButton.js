@@ -1,12 +1,12 @@
 import React from 'react';
 
 const CalcButton = (props) => {
-
-	const { operations, handleClick } = props;
+	const { operations, handleClick, active } = props;
+	console.log('active', active);
 	const buttonList = operations.map((operation, index) => {
 		return (
 			<button
-				className="calc-button"
+				className={`calc-button ${active === operation.name ? 'active': ""}`}
 				onClick={() => handleClick(operation.name)}
 				key={index}
 			>

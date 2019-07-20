@@ -17,21 +17,48 @@ class App extends Component {
 		],
 		num1: '',
 		num2: '',
-		output: 0
+		output: 0,
+		active: '',
+		error:{
+			num1:'',
+			num2:''
+		}
 	}
 
 	handleChange = name => (e) => {
-		let value = parseFloat(e.target.value);
-      this.setState({ [name]: value });
+		let value = ''
+		this.setState({ [name]: '' });
+		if(e.target.value !== ''){
+			value = parseFloat(e.target.value);
+		}else{
+			value = '';
+		}
+		this.setState({ active: '' });
+		
+      	this.setState({ [name]: value });
+	}
+
+	isValidAndSetError = () => {
+		let {error} = this.state;
+		let result = true;
+		Object.keys(error).forEach(item =>{
+			console.log('cause', this.state[item]);
+			error[item] = this.state[item]>=0 ? "" : "Please Enter Value";
+			result = result && !!this.state[item];
+		});
+		this.setState({error});
+		return result;
 	}
 
 	handleClick = (operation) => {
+		if(!this.isValidAndSetError()) return;
+		this.setState({ active: operation });
 		const { num1, num2 } = this.state
 		this.props.evaluateResult({ num1, num2, operation })
 	};
 
 	render() {
-		const { num1, num2, operations } = this.state;
+		const { num1, num2, operations, active, error } = this.state;
 		const { arithmetic } = this.props;
 		return (
 				<div className="calculator-wrapper">
@@ -44,11 +71,13 @@ class App extends Component {
 							onChange={this.handleChange('num1')}
 							placeholder="Enter value 1"
 						/>
+						<p className="error">{error['num1']}</p>
 						<input type="number"
 							value={num2}
 							onChange={this.handleChange('num2')}
 							placeholder="Enter value 2"
 						/>
+						<p className="error">{error['num2']}</p>
 					</div>
 					<div className="button-wrapper">
 						<CalcButton operations={operations} handleClick={this.handleClick} />
