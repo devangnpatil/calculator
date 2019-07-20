@@ -79,7 +79,7 @@ p.error{
   border-radius: 2px;
 }
 
-.active{
+.button-wrapper .calc-button.active{
   background: linear-gradient(#5B247A, #65799B);
 }
 
