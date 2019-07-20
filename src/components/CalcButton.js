@@ -1,30 +1,26 @@
-import React, {Component} from 'react';
+import React from 'react';
 
-class CalcButton extends Component{
-	state = {
-		test: 10
-	};
+const CalcButton = (props) => {
 
-	handleChange = (e) =>{
-		e.preventDefault();
-	};
-	render(){
-		const {operations} = this.props;
-		const buttonList = operations.map(operation => {
-			return (
-				<button className="calc-button" onClick={this.handleChange} key={operation.id}>
-					<span className="icon">{operation.icon}</span>
-					<span className="text">{operation.name}</span>
-				</button>
-			)
-		})
+	const { operations, handleClick } = props;
+	const buttonList = operations.map((operation, index) => {
 		return (
-			<div className="operation-list">
-				{buttonList}
-			</div>
+			<button
+				className="calc-button"
+				onClick={() => handleClick(operation.name)}
+				key={index}
+			>
+				<span className="icon">{operation.icon}</span>
+				<span className="text">{operation.name}</span>
+			</button>
 		)
-	}
+	});
 
+	return (
+		<div className="operation-list">
+			{buttonList}
+		</div>
+	)
 }
 
 export default CalcButton

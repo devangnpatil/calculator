@@ -1,4 +1,1 @@
-export const ADD = 'ADD';
-export const SUBTRACT = 'SUBTRACT';
-export const MULTIPLY = 'MULTIPLY';
-export const DIVIDE = 'DIVIDE';
+export const UPDATE_RESULT = 'UPDATE_RESULT';

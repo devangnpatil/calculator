@@ -1,45 +1,80 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import AppHeader from './components/AppHeader';
-import CalcInput from './components/CalcInput'
 import CalcButton from './components/CalcButton';
 import CalcResult from './components/CalcResult';
 import './App.css';
-class App extends Component{
+import * as actions from './actions';
+import { connect } from 'react-redux';
 
-  state = {
-    operations: [
-      {name: 'add', icon:'+', id:1},
-      {name:'Substract', icon:'-', id:2},
-      {name:'Multiply', icon:'x', id:3},
-      {name:'Divide', icon:'÷', id:4}
-    ],
-    inputElements: [
-      {name: 'value1', id:1, labelName: 'Enter value 1', value:''},
-      {name: 'value2', id:2, labelName: 'Enter value 2', value:''},
-    ],
-    output:0
-  }
+class App extends Component {
 
-  render() {
-    return (
-      <div className="App">
-        <div className="calculator-wrapper">
-          <div className="calculator-header-wrapper">
-            <AppHeader/>
-          </div>
-          <div className="calc-input-wrapper">
-            <CalcInput inputElements={this.state.inputElements} />
-          </div>
-          <div className="button-wrapper">
-            <CalcButton operations={this.state.operations}/>
-          </div>
-          <div className="result-wrapper">
-            <CalcResult result={this.state.output}/>
-          </div>
-        </div>
-      </div>
-    );
-  }
+	state = {
+		operations: [
+			{ name: 'add', icon: '+', id: 1 },
+			{ name: 'subtract', icon: '-', id: 2 },
+			{ name: 'multiply', icon: 'x', id: 3 },
+			{ name: 'divide', icon: '÷', id: 4 }
+		],
+		num1: '',
+		num2: '',
+		output: 0
+	}
+
+	handleChange = name => (e) => {
+		let value = e.target.value
+		if (!isNaN(value)) {
+			value = (value) ? parseInt(e.target.value) : ''
+			this.setState({ [name]: value });
+		}
+	}
+
+	handleClick = (operation) => {
+		const { num1, num2 } = this.state
+		this.props.evaluateResult({ num1, num2, operation })
+	};
+
+	render() {
+		const { num1, num2, operations } = this.state;
+		const { arithmetic } = this.props;
+		return (
+			<div className="App">
+				<div className="calculator-wrapper">
+					<div className="calculator-header-wrapper">
+						<AppHeader />
+					</div>
+					<div className="input-list">
+						<input type="text"
+							value={num1}
+							onChange={this.handleChange('num1')}
+							placeholder="Enter value 1"
+						/>
+						<input type="text"
+							value={num2}
+							onChange={this.handleChange('num2')}
+							placeholder="Enter value 2"
+						/>
+					</div>
+					<div className="button-wrapper">
+						<CalcButton operations={operations} handleClick={this.handleClick} />
+					</div>
+					<div className="result-wrapper">
+						<CalcResult result={arithmetic.result} />
+					</div>
+				</div>
+			</div>
+		);
+	}
 }
 
-export default App;
+const mapStateToProps = state => {
+	return {
+		arithmetic: state.arithmetic
+	}
+};
+
+const mapDispatchToProps = dispatch => {
+	return {
+		evaluateResult: (obj) => dispatch(actions.evaluateResult(obj))
+	}
+}
+export default connect(mapStateToProps, mapDispatchToProps)(App);
