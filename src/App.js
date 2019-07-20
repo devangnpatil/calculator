@@ -43,7 +43,7 @@ class App extends Component {
 		let result = true;
 		Object.keys(error).forEach(item =>{
 			console.log('cause', this.state[item]);
-			error[item] = this.state[item]>=0 ? "" : "Please Enter Value";
+			error[item] = this.state[item] ? "" : "Please Enter Value";
 			result = result && !!this.state[item];
 		});
 		this.setState({error});
