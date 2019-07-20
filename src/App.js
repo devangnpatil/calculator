@@ -21,11 +21,8 @@ class App extends Component {
 	}
 
 	handleChange = name => (e) => {
-		let value = e.target.value
-		if (!isNaN(value)) {
-			value = (value) ? parseInt(e.target.value) : ''
-			this.setState({ [name]: value });
-		}
+		let value = parseFloat(e.target.value);
+      this.setState({ [name]: value });
 	}
 
 	handleClick = (operation) => {
@@ -37,18 +34,17 @@ class App extends Component {
 		const { num1, num2, operations } = this.state;
 		const { arithmetic } = this.props;
 		return (
-			<div className="App">
 				<div className="calculator-wrapper">
 					<div className="calculator-header-wrapper">
 						<AppHeader />
 					</div>
 					<div className="input-list">
-						<input type="text"
+						<input type="number"
 							value={num1}
 							onChange={this.handleChange('num1')}
 							placeholder="Enter value 1"
 						/>
-						<input type="text"
+						<input type="number"
 							value={num2}
 							onChange={this.handleChange('num2')}
 							placeholder="Enter value 2"
@@ -61,7 +57,6 @@ class App extends Component {
 						<CalcResult result={arithmetic.result} />
 					</div>
 				</div>
-			</div>
 		);
 	}
 }
