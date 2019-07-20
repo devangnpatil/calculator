@@ -2,7 +2,6 @@ import React from 'react';
 
 const CalcButton = (props) => {
 	const { operations, handleClick, active } = props;
-	console.log('active', active);
 	const buttonList = operations.map((operation, index) => {
 		return (
 			<button
