@@ -1,11 +1,10 @@
 import React from 'react'
 
-const CalcResult = () => {
-  
+const CalcResult = (props) => {
     return (
         <div className="result">
 			<span className="result-text">Result</span>
-			<span className="output">48,000</span>
+			<span className="output">{props.result}</span>
 		</div>
     );
 }

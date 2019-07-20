@@ -16,7 +16,8 @@ class App extends Component{
     inputElements: [
       {name: 'value1', id:1, labelName: 'Enter value 1', value:''},
       {name: 'value2', id:2, labelName: 'Enter value 2', value:''},
-    ]
+    ],
+    output:0
   }
 
   render() {
@@ -33,7 +34,7 @@ class App extends Component{
             <CalcButton operations={this.state.operations}/>
           </div>
           <div className="result-wrapper">
-            <CalcResult />
+            <CalcResult result={this.state.output}/>
           </div>
         </div>
       </div>
