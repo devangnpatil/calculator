@@ -4,8 +4,9 @@ class CalcInput extends Component{
   render(){
     const {inputElements} = this.props;
     const handleChange = name => event => {
-      // this.setState({[name]: event.target.value });
+      this.setState({[name]: event.target.value });
     };
+    console.log(this.state);
 		const inputList = inputElements.map(input => {
 			return (
           <input type="text" 
